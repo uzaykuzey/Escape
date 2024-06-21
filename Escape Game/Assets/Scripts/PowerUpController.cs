@@ -36,7 +36,7 @@ public class PowerUpController : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-       if(summon())
+       if(Summon())
         {
             int randomInt = (int)Random.Range(1, 9);
             if(randomInt < 3) 
@@ -58,16 +58,16 @@ public class PowerUpController : MonoBehaviour
             }
             spriteRenderer.sprite = sprites[type-1];
             didntTouchYet = true;
-            powerup.position=new Vector2(xFinder.getAxisValue("x"), yFinder.getAxisValue("y"));
+            powerup.position=new Vector2(xFinder.GetAxisValue("x"), yFinder.GetAxisValue("y"));
         }
-       if(!activePowerUp()&&!didntTouchYet)
+       if(!ActivePowerUp()&&!didntTouchYet)
         {
             type = 0;
             didntTouchYet=true;
         }
     }
 
-    private bool summon()
+    private bool Summon()
     {
         if (type!=0)
         {
@@ -76,7 +76,7 @@ public class PowerUpController : MonoBehaviour
         return ((int)Time.timeSinceLevelLoad) % 30 == 8;
     }
 
-    public int getCurrentType()
+    public int GetCurrentType()
     {
         if(didntTouchYet)
         {
@@ -85,27 +85,27 @@ public class PowerUpController : MonoBehaviour
         return type;
     }
 
-    public bool activePowerUp()
+    public bool ActivePowerUp()
     {
         if(type==0)
         {
             return false;
         }
-        return timeRemaining() != 0;
+        return TimeRemaining() != 0;
     }
 
-    public float timeRemaining()
+    public float TimeRemaining()
     {
         float time = totalTimeAllowed - (Time.timeSinceLevelLoad - timeStart);
         return time<0 ? 0: time;
     }
 
-    public void teleportAway()
+    public void TeleportAway()
     {
-        powerup.position = new Vector2(yFinder.getAxisValue("x"), xFinder.getAxisValue("y"));
+        powerup.position = new Vector2(yFinder.GetAxisValue("x"), xFinder.GetAxisValue("y"));
     }
 
-    public void setUp()
+    public void SetUp()
     {
         timeStart = Time.timeSinceLevelLoad;
         didntTouchYet = false;

@@ -20,7 +20,7 @@ public class HearthDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(playerMovement.getHealth() < hearthIndex)
+        if(playerMovement.GetHealth() < hearthIndex)
         {
             spriteRenderer.sprite = deactiveHeart;
         }

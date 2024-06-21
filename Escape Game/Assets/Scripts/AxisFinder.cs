@@ -33,7 +33,7 @@ public class AxisFinder : MonoBehaviour
         speed = - Mathf.Sign(speed) * Random.Range(5,15)* 1.5f;
     }
 
-    public float getAxisValue(string str)
+    public float GetAxisValue(string str)
     {
         if(str.ToLower().Equals("x"))
         {

@@ -17,9 +17,9 @@ public class PowerUpDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int type=powerUpController.getCurrentType();
+        int type=powerUpController.GetCurrentType();
         spriteRenderer.sprite = sprites[type];
-        if(powerUpController.timeRemaining()<=4 && powerUpController.timeRemaining()>0 && (((int)(powerUpController.timeRemaining() * 1.5)) % 2 == 1))
+        if(powerUpController.TimeRemaining()<=4 && powerUpController.TimeRemaining()>0 && (((int)(powerUpController.TimeRemaining() * 1.5)) % 2 == 1))
         {
             spriteRenderer.color = new Color(1, 1, 1, 0.5f);
         }

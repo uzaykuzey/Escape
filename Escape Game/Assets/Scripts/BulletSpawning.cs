@@ -20,7 +20,7 @@ public class BulletSpawning : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        if(summon())
+        if(Summon())
         {
             int k=0;
             for(int i=0;i<5;i++)
@@ -28,12 +28,12 @@ public class BulletSpawning : MonoBehaviour
                 k++;
             }
             thereIsABullet = (int) Mathf.Sign(k);
-            bulletSpawner.position = new Vector2(xFinder.getAxisValue("x"), yFinder.getAxisValue("y"));
+            bulletSpawner.position = new Vector2(xFinder.GetAxisValue("x"), yFinder.GetAxisValue("y"));
             bulletSpawner.rotation= Random.Range(0, 360);
         }
     }
 
-    private bool summon()
+    private bool Summon()
     {
         if (thereIsABullet != 0)
         {
@@ -44,9 +44,9 @@ public class BulletSpawning : MonoBehaviour
         return ((int)Time.timeSinceLevelLoad) % 40 == 12;
     }
 
-    public void teleportAway()
+    public void TeleportAway()
     {
-        bulletSpawner.position = new Vector2(yFinder.getAxisValue("x"), xFinder.getAxisValue("y")+15);
+        bulletSpawner.position = new Vector2(yFinder.GetAxisValue("x"), xFinder.GetAxisValue("y")+15);
         thereIsABullet = 2;
         times = 0;
     }

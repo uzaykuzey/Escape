@@ -25,7 +25,7 @@ public class BulletMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(canFire && playerMovement.getBullets()>0&&Input.GetMouseButtonDown(0))
+        if(canFire && playerMovement.GetBullets()>0&&Input.GetMouseButtonDown(0))
         {
             Fire();
         }
@@ -33,7 +33,7 @@ public class BulletMovement : MonoBehaviour
 
     public void Fire()
     {
-        playerMovement.changeBullets(-1);
+        playerMovement.ChangeBullets(-1);
         canFire = false;
         Vector2 mouse = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         float px = playerRigidbody.position.x;
@@ -53,14 +53,14 @@ public class BulletMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        teleportAway();
+        TeleportAway();
         if (collision.gameObject.name.Contains("Enemy"))
         {
-            enemyMovement.decreaseHealth();
+            enemyMovement.DecreaseHealth();
         }
     }
 
-    public void teleportAway()
+    public void TeleportAway()
     {
         bullet.position = new Vector2(playerRigidbody.position.x, playerRigidbody.position.y+200);
         canFire = true;

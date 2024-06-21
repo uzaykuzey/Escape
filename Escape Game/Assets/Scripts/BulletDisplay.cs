@@ -17,7 +17,7 @@ public class BulletDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int number = playerMovement.getBullets();
+        int number = playerMovement.GetBullets();
         spriteRenderer.sprite = sprites[number];
     }
 }

@@ -41,14 +41,14 @@ public class EnemyMovement : MonoBehaviour
             float cosine = (px - ex) / distance + Random.value * 2 * randomFactor - randomFactor;
             float speed = basespeed + 5*Random.value;
 
-            if(powerUpController.getCurrentType()== 2)
+            if(powerUpController.GetCurrentType()== 2)
             {
                 if(distance<7)
                 {
                     speed *= -2;
                 }
             }
-            else if (powerUpController.getCurrentType() == 1)
+            else if (powerUpController.GetCurrentType() == 1)
             {
                 speed = 0.01f;
             }
@@ -63,7 +63,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(!stop&&playerMovement.getHealth()<1&&collision.gameObject.name.Equals(player.gameObject.name))
+        if(!stop&&playerMovement.GetHealth()<1&&collision.gameObject.name.Equals(player.gameObject.name))
         {
             enemy.gravityScale =1;
             GameObject.Destroy(collision.gameObject);
@@ -78,7 +78,7 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    public void decreaseHealth()
+    public void DecreaseHealth()
     {
         health--;
         print(health);

@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (powerUpController.getCurrentType() == 3)
+        if (powerUpController.GetCurrentType() == 3)
         {
             rb.gravityScale = 8 * Mathf.Sign(rb.gravityScale);
         }
@@ -32,13 +32,13 @@ public class PlayerMovement : MonoBehaviour
             rb.gravityScale = 4 * Mathf.Sign(rb.gravityScale);
         }
 
-        if(powerUpController.getCurrentType() == 4 && canDoubleJump==0)
+        if(powerUpController.GetCurrentType() == 4 && canDoubleJump==0)
         {
             canDoubleJump = 2;
         }
 
         horizontal = Input.GetAxisRaw("Horizontal");
-        float jumpingPower = this.jumpingPower * (powerUpController.getCurrentType() == 3 ? 2 : 1);
+        float jumpingPower = this.jumpingPower * (powerUpController.GetCurrentType() == 3 ? 2 : 1);
         if (Input.GetButtonDown("Jump") && canJump)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower*Mathf.Sign(rb.gravityScale));
@@ -57,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
         if(canDoubleJump==2 && Input.GetButtonDown("Jump"))
         {
             rb.velocity = new Vector2(rb.velocity.x, 0.90f*jumpingPower * Mathf.Sign(rb.gravityScale));
-            if(powerUpController.getCurrentType()!=4)
+            if(powerUpController.GetCurrentType()!=4)
             {
                 canDoubleJump = 0;
             }
@@ -81,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float speed = this.speed * (powerUpController.getCurrentType() == 3 ? 3 : 1);
+        float speed = this.speed * (powerUpController.GetCurrentType() == 3 ? 3 : 1);
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
     }
 
@@ -111,12 +111,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if(collision.gameObject.name.Contains("PowerUps"))
         {
-            powerUpController.teleportAway();
-            powerUpController.setUp();
+            powerUpController.TeleportAway();
+            powerUpController.SetUp();
         }
         if (bulletNumber<4 && collision.gameObject.name.Contains("BulletSpawner"))
         {
-            bulletSpawning.teleportAway();
+            bulletSpawning.TeleportAway();
             bulletNumber++;
         }
         if (collision.gameObject.name.Contains("Ground"))
@@ -128,7 +128,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (collision.gameObject.name.Contains("Enemy"))
         {
-            if(!isInvulnerable())
+            if(!IsInvulnerable())
             {
                 lastHit = Time.timeSinceLevelLoad;
                 health--;
@@ -136,22 +136,22 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public int getHealth()
+    public int GetHealth()
     {
         return health;
     }
 
-    public int getBullets()
+    public int GetBullets()
     {
         return bulletNumber;
     }
 
-    public void changeBullets(int value)
+    public void ChangeBullets(int value)
     {
         bulletNumber += value;
     }
 
-    public bool isInvulnerable()
+    public bool IsInvulnerable()
     {
         return Time.timeSinceLevelLoad - lastHit < 2;
     }
